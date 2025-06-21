@@ -86,7 +86,9 @@ public class DefaultUserManagementService implements UserManagementService {
 		
 		int index = 0;
 		for (User user : users) {
-			nonNullUsers[index++] = user;
+			if(user != null) {
+				nonNullUsers[index++] = user;
+			}
 		}
 		
 		for(User user : nonNullUsers) {
