@@ -2,6 +2,8 @@ package eCommerceStoreConsole.menus.implementations;
 
 import java.util.Scanner;
 
+import eCommerceStoreConsole.entities.*;
+import eCommerceStoreConsole.entities.implementations.DefaultUser;
 import eCommerceStoreConsole.configurations.ApplicationContext;
 import eCommerceStoreConsole.menus.Menu;
 import eCommerceStoreConsole.services.UserManagementService;
@@ -29,7 +31,12 @@ public class SignUpMenu implements Menu {
 		String lastName = scanner.next();
 		System.out.print("Please, enter your password: ");
 		String password = scanner.next();
-	}
+		System.out.print("Please, enter your email: ");
+		String email = scanner.next();
+		
+		User user = new DefaultUser(firstName, lastName, password, email);
+		userManagementService.registerUser(user);
+		}
 
 	@Override
 	public void printMenuHeader() {
