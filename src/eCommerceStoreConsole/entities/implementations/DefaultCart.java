@@ -1,26 +1,68 @@
 package eCommerceStoreConsole.entities.implementations;
 
+import java.util.Arrays;
+
 import eCommerceStoreConsole.entities.Cart;
 import eCommerceStoreConsole.entities.Product;
 
 public class DefaultCart implements Cart {
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+	
+	private static final int DEFAULT_PRODUCT_CAPACITY = 10;
+	private Product[] products;
+	private int lastIndex;
+	
+	{
+		products = new Product[DEFAULT_PRODUCT_CAPACITY];
+		lastIndex = products.length - 1;
+		
 	}
 
 	@Override
-	public void addProduct(Product productById) {
-		// TODO Auto-generated method stub
+	public boolean isEmpty() {
+		if (products == null || products.length == 0) {
+			return true;
+		}
+		
+		for (Product product : products) {
+			if(product != null) {
+				return false;
+			}
+		}
+		return true;
+	}
 
+	@Override
+	public void addProduct(Product product) {
+		if (product == null) {
+			return;
+		}
+		if (products.length <= lastIndex) {
+			products = Arrays.copyOf(products, products.length << 1);
+		}
+		products[lastIndex++] = product;
+	}
+	
+	public Product[] getProducts() {
+		int nonNullProductsAmount = 0;
+		for (Product product : products) {
+			if (product != null) {
+				nonNullProductsAmount++;
+			}
+		}
+		
+		Product[] nonNullProducts = new Product[nonNullProductsAmount];
+		int index = 0;
+		for (Product product : products) {
+			if(product != null) {
+				nonNullProducts[index++] = product;
+			}
+		}
+		return nonNullProducts;
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-
+		products = new Product[DEFAULT_PRODUCT_CAPACITY];
 	}
 
 }

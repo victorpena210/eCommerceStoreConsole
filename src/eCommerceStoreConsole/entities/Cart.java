@@ -8,4 +8,6 @@ public interface Cart {
 
 	void clear();
 
+	Product[] getProducts();
+
 }
