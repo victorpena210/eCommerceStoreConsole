@@ -66,8 +66,9 @@ public class DefaultOrderManagementService implements OrderManagementService {
 	@Override
 	public Order[] getOrders() {
 		int nonNullOrdersAmount = 0;
-		for (Order order : orders) {
-			if (order != null) {
+		for (Order order : orders)
+		{
+			if(order != null) {
 				nonNullOrdersAmount++;
 			}
 		}
@@ -76,10 +77,16 @@ public class DefaultOrderManagementService implements OrderManagementService {
 		
 		int index = 0;
 		for (Order order : orders) {
-			 
+			if(order != null) {
+				nonNullOrders[index++] = order;
+			}
 		}
-		
+		return nonNullOrders;
 	}
-
-
+	
+	void clearServiceState() {
+		lastIndex = 0;
+		orders = new Order[DEFAULT_ORDER_CAPACITY];
+	}
 }
+

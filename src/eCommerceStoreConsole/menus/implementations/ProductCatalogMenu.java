@@ -64,6 +64,8 @@ public class ProductCatalogMenu implements Menu {
 
 	}
 	
+	
+	
 	private void productToAddToCart(Product productToAddToCart) {
 		context.getSessionCart().addProduct(productToAddToCart);
 		System.out.printf("Product %s has been added to your cart. "
@@ -71,6 +73,10 @@ public class ProductCatalogMenu implements Menu {
 				+ "If you want to proceed with checkout - enter word CHECKOUT"
 				+ "console %n", productToAddToCart.getProductName());	}
 
+	
+	
+	
+	
 	private String readUserInput() {
 		System.out.print("Product ID to add to cart or enter CHECKOUT to proceed with checkout: ");
 		Scanner scanner = new Scanner(System.in);
