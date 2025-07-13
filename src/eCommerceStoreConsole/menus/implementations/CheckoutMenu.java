@@ -2,7 +2,9 @@ package eCommerceStoreConsole.menus.implementations;
 
 import eCommerceStoreConsole.menus.Menu;
 import eCommerceStoreConsole.services.OrderManagementService;
+import eCommerceStoreConsole.services.ProductManagementService;
 import eCommerceStoreConsole.services.implementations.DefaultOrderManagementService;
+import eCommerceStoreConsole.services.implementations.DefaultProductManagementService;
 
 import java.util.Scanner;
 
@@ -14,10 +16,12 @@ public class CheckoutMenu implements Menu {
 	
 	private ApplicationContext context;
 	private OrderManagementService orderManagementService;
+	private ProductManagementService productManagementService;
 	
 	{
 		context = ApplicationContext.getInstance();
 		orderManagementService = DefaultOrderManagementService.getInstance();
+		productManagementService = DefaultProductManagementService.getInstance();
 	}
 	
 
@@ -41,7 +45,7 @@ public class CheckoutMenu implements Menu {
 		if (!order.isCreditCardNumberValid(creditCardNumber)) {
 			return false;
 		}
-		
+
 		order.setCreditCardNumber(creditCardNumber);
 		order.setProducts(context.getSessionCart().getProducts());
 		order.setCustomerId(context.getLoggedInUser().getId());

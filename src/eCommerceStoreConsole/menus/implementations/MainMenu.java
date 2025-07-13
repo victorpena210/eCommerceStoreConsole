@@ -73,7 +73,7 @@ public class MainMenu implements Menu {
 						break mainLoop;
 					case 6: 
 						menuToNavigate = new CustomerListMenu();
-						break mainLoop;
+						break mainLoop;						
 					default: 
 						System.out.println("Only 1, 2, 3, 4, 5 is allowed.  Try one more time");
 						continue; 

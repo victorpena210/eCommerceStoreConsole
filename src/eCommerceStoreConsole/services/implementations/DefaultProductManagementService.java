@@ -11,7 +11,7 @@ public class DefaultProductManagementService implements ProductManagementService
 	private static Product[] products;
 	
 	{
-		initProducts().toString();
+		initProducts();
 	}
 	
 	private static Product[] initProducts() {
