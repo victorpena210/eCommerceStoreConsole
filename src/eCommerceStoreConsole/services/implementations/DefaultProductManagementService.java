@@ -26,7 +26,6 @@ public class DefaultProductManagementService implements ProductManagementService
 				new DefaultProduct(8, "Wienerberger Terca Class B Engineering Brick Red 215mm x 102.5mm x 65mm (Pack of 504)", "Bricks", 402.99),
 				new DefaultProduct(9, "Wienerberger Terca Engineering Brick Blue Perforated Class B 65mm (Pack of 400)", "Bricks", 659.99),
 				new DefaultProduct(10, "Wienerberger Engineering Brick Red Smooth Class B 73mm - Pack of 368", "Bricks", 523.99)
-	
 		};
 	}
 	
@@ -54,6 +53,12 @@ public class DefaultProductManagementService implements ProductManagementService
 				return product;
 			}
 		}
+		return null;
+	}
+
+	@Override
+	public Product[] addToCart(Product product) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

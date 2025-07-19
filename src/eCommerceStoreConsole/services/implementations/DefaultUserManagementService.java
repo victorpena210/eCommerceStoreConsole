@@ -30,7 +30,6 @@ public class DefaultUserManagementService implements UserManagementService {
 	
 	
 	
-	
 	@Override
 	public String registerUser(User user) {
 		if(user == null) {

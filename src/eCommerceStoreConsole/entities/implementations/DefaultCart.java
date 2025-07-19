@@ -39,7 +39,7 @@ public class DefaultCart implements Cart {
 		if (products.length <= lastIndex) {
 			products = Arrays.copyOf(products, products.length << 1);
 		}
-		products[lastIndex++] = product;
+		products[lastIndex] = product;
 	}
 	
 	public Product[] getProducts() {

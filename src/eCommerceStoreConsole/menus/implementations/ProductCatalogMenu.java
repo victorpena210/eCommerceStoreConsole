@@ -1,10 +1,12 @@
 package eCommerceStoreConsole.menus.implementations;
 
+import java.lang.reflect.Array;
 import java.util.Scanner;
 
 import eCommerceStoreConsole.configurations.ApplicationContext;
 import eCommerceStoreConsole.entities.Cart;
 import eCommerceStoreConsole.entities.Product;
+import eCommerceStoreConsole.entities.implementations.DefaultProduct;
 import eCommerceStoreConsole.menus.Menu;
 import eCommerceStoreConsole.services.OrderManagementService;
 import eCommerceStoreConsole.services.ProductManagementService;
@@ -41,16 +43,16 @@ public class ProductCatalogMenu implements Menu {
 			Product productToAddToCart = fetchProduct(userInput);
 			productToAddToCart(productToAddToCart);
 			
-			switch (userInput) { 
-			case CHECKOUT_COMMAND: 
-				Cart sessionCart = context.getSessionCart();
-				if (sessionCart == null || sessionCart.isEmpty()) {
-					System.out.println("Your cart is empty. please, add product to your cart and then proceed to checkout.");
-					printProductsToConsole();
-				} 
-				menuToNavigate = new CheckoutMenu();
-				break;
-			}
+			
+				System.out.println("TEST");
+				
+				Product[] usersCartTest = context.getSessionCart().getProducts();
+				for(Product product: usersCartTest) {
+					System.out.println("test " + product.getProductName() + " test");
+				}
+
+				System.out.println("TEST");
+
 					
 		}
 	
@@ -70,11 +72,10 @@ public class ProductCatalogMenu implements Menu {
 				+ "If you want to add a new product - enter the product id."
 				+ "If you want to proceed with checkout - enter word CHECKOUT"
 				+ "console %n", productToAddToCart.getProductName());
-		Menu cMenu = new CheckoutMenu();
-		cMenu.start();
 		}
 
-	
+
+
 	private String readUserInput() {
 		System.out.print("Product ID to add to cart or enter CHECKOUT to proceed with checkout: ");
 		Scanner scanner = new Scanner(System.in);

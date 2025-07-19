@@ -4,8 +4,10 @@ import eCommerceStoreConsole.entities.Product;
 
 public interface ProductManagementService {
 	
+	Product[] addToCart(Product product);
+	
 	Product[] getProducts();
 	
-	Product getProductsById(int productIdToAddToCart);
+	Product getProductsById(int productId);
 
 }
