@@ -43,27 +43,35 @@ public class ProductCatalogMenu implements Menu {
 			Product productToAddToCart = fetchProduct(userInput);
 			productToAddToCart(productToAddToCart);
 			
+			if(userInput.equalsIgnoreCase(CHECKOUT_COMMAND)) {
+				System.out.println("checkout test");
+			}
+			
 			
 				System.out.println("TEST");
 				
 				Product[] usersCartTest = context.getSessionCart().getProducts();
 				for(Product product: usersCartTest) {
-					System.out.println("test " + product.getProductName() + " test");
+					System.out.println("test " + product.getProductName() + "test");	
 				}
-
 				System.out.println("TEST");
-
-					
 		}
-	
 	}
 	
 	private Product fetchProduct(String userInput) {
+		if (userInput.contains(CHECKOUT_COMMAND)) {
+			Menu customerCheckout = new CheckoutMenu();
+			customerCheckout.start();
+		}
+		
 		int productIdToAddToCart = Integer.parseInt(userInput);
 		Product productToAddToCart = productManagementService.getProductsById(productIdToAddToCart);
 		return productToAddToCart;
+			
+		}
 
-	}
+
+	
 	
 	
 	private void productToAddToCart(Product productToAddToCart) {
