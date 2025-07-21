@@ -32,6 +32,11 @@ public class CheckoutMenu implements Menu {
 			Scanner scanner = new Scanner(System.in);
 			String userInput = scanner.next();
 			
+			Product[] test = context.getSessionCart().getProducts();			
+			for(Product product : test) {
+				System.out.println(product.getProductName());
+			}
+			
 			if (!createOrder(userInput)) {
 				continue;
 			}
