@@ -16,12 +16,10 @@ public class CheckoutMenu implements Menu {
 	
 	private ApplicationContext context;
 	private OrderManagementService orderManagementService;
-	private ProductManagementService productManagementService;
 	
 	{
 		context = ApplicationContext.getInstance();
 		orderManagementService = DefaultOrderManagementService.getInstance();
-		productManagementService = DefaultProductManagementService.getInstance();
 	}
 	
 
@@ -30,24 +28,18 @@ public class CheckoutMenu implements Menu {
 		while (true) {
 			printMenuHeader();
 			Scanner scanner = new Scanner(System.in);
-			String userInput = scanner.next();
+			String userCreditCardNumber = scanner.next();
 			
-			Product[] test = context.getSessionCart().getProducts();			
-			for(Product product : test) {
-				System.out.println(product.getProductName());
-			}
-			
-			if (!createOrder(userInput)) {
-				continue;
-			}
-			context.getSessionCart().clear();
-			break;
+			createOrder(userCreditCardNumber);
+			System.out.println("allDone");
+			new MainMenu().start();
 		}
 	}
 	
 	private boolean createOrder(String creditCardNumber) {
 		Order order = new DefaultOrder();
 		if (!order.isCreditCardNumberValid(creditCardNumber)) {
+			System.out.println("invalid card Number");
 			return false;
 		}
 
@@ -55,6 +47,7 @@ public class CheckoutMenu implements Menu {
 		order.setProducts(context.getSessionCart().getProducts());
 		order.setCustomerId(context.getLoggedInUser().getId());
 		orderManagementService.addOrder(order);
+		
 		return true;
 		
 	}

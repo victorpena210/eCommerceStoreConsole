@@ -18,12 +18,10 @@ public class ProductCatalogMenu implements Menu {
 	private static final String CHECKOUT_COMMAND = "checkout";
 	private ApplicationContext context;
 	private ProductManagementService productManagementService;
-	private OrderManagementService orderManagementService;
 	
 	{
 		context = ApplicationContext.getInstance();
 		productManagementService = DefaultProductManagementService.getInstance();
-		orderManagementService = DefaultOrderManagementService.getInstance();
 	}
 
 	@Override
@@ -69,13 +67,10 @@ public class ProductCatalogMenu implements Menu {
 		return productToAddToCart;
 			
 		}
-
-
-	
-	
 	
 	private void productToAddToCart(Product productToAddToCart) {
-		context.getSessionCart().addProduct(productToAddToCart);
+		Cart customerCart = context.getSessionCart();
+		customerCart.addProduct(productToAddToCart);
 		System.out.printf("Product %s has been added to your cart. "
 				+ "If you want to add a new product - enter the product id."
 				+ "If you want to proceed with checkout - enter word CHECKOUT"

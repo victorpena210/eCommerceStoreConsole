@@ -37,7 +37,7 @@ public class MyOrdersMenu implements Menu {
 					+ "Navigate back to main menu to place a new order.");
 		} else {
 			for(Order order : loggedInUserOrders) {
-				System.out.println(order);
+				System.out.println(order + "\n");
 			}
 		}
 	}

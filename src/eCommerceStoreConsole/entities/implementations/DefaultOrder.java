@@ -48,7 +48,4 @@ public class DefaultOrder implements Order {
 		return "DefaultOrder [creditCardNumber=" + creditCardNumber + ", products=" + Arrays.toString(products)
 				+ ", customerId=" + customerId + "]";
 	}
-	
-	
-
 }

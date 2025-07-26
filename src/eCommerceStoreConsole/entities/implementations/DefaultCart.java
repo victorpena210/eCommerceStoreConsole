@@ -30,17 +30,19 @@ public class DefaultCart implements Cart {
 		}
 		return true;
 	}
+	
 
-	@Override
-	public void addProduct(Product product) {
-		if (product == null) {
-			return;
-		}
-		if (products.length <= lastIndex) {
-			products = Arrays.copyOf(products, products.length << 1);
-		}
-		products[lastIndex] = product;
-	}
+@Override
+public void addProduct(Product product) {
+    if (product == null) {
+        return;
+    }
+    if (lastIndex >= products.length) {
+        products = Arrays.copyOf(products, products.length * 2);  // Double the array size
+    }
+    products[lastIndex] = product;
+    lastIndex++;  // Increment index after adding
+}
 	
 	public Product[] getProducts() {
 		int nonNullProductsAmount = 0;
